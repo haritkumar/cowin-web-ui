@@ -1,14 +1,29 @@
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
-<p>home works!</p>
+
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col" style="width: 15%;">Center</th>
+      <th scope="col" style="width: 30%;">Address</th>
+      <th scope="col" style="width: 10%;">Vaccine</th>
+      <th scope="col" style="width: 10%;">Pincode</th>
+      <th scope="col" style="width: 10%;">Fee</th>
+      <th scope="col" style="width: 10%;">Available</th>
+      <th scope="col" style="width: 10%;">Date</th>
+      <th scope="col" style="width: 5%;">Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of sessionsMap | keyvalue">
+      <td>
+        {{ entry.value.name }}
+      </td>
+      <td>{{ entry.value.address}}</td>
+      <td>{{ entry.value.vaccine }}</td>
+      <td>{{ entry.value.pincode }}</td>
+      <td>{{ entry.value.fee }}</td>
+      <td><strong>{{ entry.value.available_capacity }}</strong></td>
+      <td>{{ entry.value.date }}</td>
+      <td>{{ entry.value.min_age_limit }}</td>
+    </tr>
+    </tbody>
+  </table>
