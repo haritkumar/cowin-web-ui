@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { Observable,from ,interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,21 @@ export class HomeComponent implements OnInit {
   stompClient: any;
   disabled = true;
   sessionsMap = new Map();  
-  constructor() { }
+  totalSlots: number = 0;
+  secondsCounter = interval(1000);
 
+  constructor() {
+    this.secondsCounter.subscribe(n =>{
+      let totalSlots = 0;
+      this.sessionsMap.forEach((value: any, key: string) => {
+        totalSlots = totalSlots+value.available_capacity;
+    });
+    this.totalSlots = totalSlots;
+    }
+      );
+   }
+
+   
   setConnected(connected: boolean) {
     this.disabled = !connected;
   }
