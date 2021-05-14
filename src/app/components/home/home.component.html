@@ -21,7 +21,7 @@
       <td>{{ entry.value.vaccine }}</td>
       <td>{{ entry.value.pincode }}</td>
       <td>{{ entry.value.fee }}</td>
-      <td><strong>{{ entry.value.available_capacity }}</strong></td>
+      <td [ngClass]="getCSSClass(entry.value.available_capacity).bg"><strong>{{ entry.value.available_capacity }}</strong></td>
       <td>{{ entry.value.date }}</td>
       <td>{{ entry.value.min_age_limit }}</td>
     </tr>

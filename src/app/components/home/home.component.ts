@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { Observable,from ,interval } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     console.log("Initialize WebSocket Connection");
     const socket = new SockJS('http://localhost:8080/stomp-endpoint-ws');
     this.stompClient = Stomp.over(socket);
-    this.stompClient.debug = null
+    //this.stompClient.debug = null
   const _this = this;
   this.stompClient.connect({}, function (frame) {
     _this.stompClient.subscribe('/topic/slotByPin', function (payload) {
@@ -44,13 +44,20 @@ export class HomeComponent implements OnInit {
     });
   });
   }
-
+  getCSSClass(capacity) {
+    if(capacity <= 10){
+      return { bg: "bg-r" };
+    }else if(capacity > 10 && capacity <= 50){
+      return { bg: "bg-y" };
+    }else{
+      return  { bg: "bg-g" }
+    }
+  }
   ngOnDestroy() {
     if (this.stompClient != null) {
       this.stompClient.disconnect();
     }
     this.setConnected(false);
-    alert('Disconnected!');
   }
 
 }

@@ -9,8 +9,23 @@ body {
     padding: 0rem 1rem !important;
 }
 .cg{
-    color: aquamarine !important;
+    color: #1eae98 !important;
+}
+.bg-g{
+    background-color: #1eae98 !important;
+    color: #fff;
+}
+.bg-y{
+    background-color: #ffb26b !important;
+    color: #fff;
+}
+.bg-r{
+    background-color: #ce1f6a !important;
+    color: #fff;
 }
 .f1{
     font-size: 16px;
+}
+.w50{
+    width: 450px !important;
 }

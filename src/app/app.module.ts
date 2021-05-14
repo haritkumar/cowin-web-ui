@@ -10,6 +10,8 @@ import { OpenLayoutComponent } from './layout/open-layout/open-layout.component'
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CalendarPinComponent } from './components/calendar-pin/calendar-pin.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { FooterComponent } from './components/footer/footer.component';
     OpenLayoutComponent,
     NotFoundComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    CalendarPinComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

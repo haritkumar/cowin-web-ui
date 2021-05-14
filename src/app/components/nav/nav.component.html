@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#">CoWin Tracker</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,11 +9,12 @@
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="['/home']">SlotByPincode</a>
         </li>
-        <li class="nav-item" [routerLinkActive]="'active'">
-          <a class="nav-link" [routerLink]="['/slotByDistrict']">SlotByDistrict</a>
-        </li>
+        
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="['/calendarByPincode']">CalendarByPincode</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="'active'">
+          <a class="nav-link" [routerLink]="['/slotByDistrict']">SlotByDistrict</a>
         </li>
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="['/calendarByDistrict']">CalendarByDistrict</a>
