@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { InnerLayoutComponent } from './layout/inner-layout/inner-layout.component';
 import { OpenLayoutComponent } from './layout/open-layout/open-layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     InnerLayoutComponent,
     OpenLayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
