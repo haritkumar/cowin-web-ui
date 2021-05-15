@@ -15,6 +15,9 @@ body {
 .cr{
     color: #ce1f6a !important;
 }
+.apistatus{
+    cursor: pointer;
+}
 .bg-g{
     background-color: #1eae98 !important;
     color: #fff;

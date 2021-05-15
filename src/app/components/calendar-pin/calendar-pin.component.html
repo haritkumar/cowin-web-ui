@@ -12,7 +12,8 @@
             <div class="form-check mx-sm-3">
                 <input [(ngModel)]="isChecked18Plus" (change)="fieldsChange18Plus($event)" class="form-check-input" type="checkbox" value="" #18plus>
                 <label class="form-check-label" for="18plus">
-                  Only 18+ <i class="{{apiStatus}}" class="nav-link bi bi-display-fill"></i>
+                  Only 18+ <i class="{{apiStatus}}" class="apistatus ml-2 bi bi-display-fill" placement="right" ngbTooltip="Cowin APIs access status">
+                    </i>
                 </label>
               </div>
             
