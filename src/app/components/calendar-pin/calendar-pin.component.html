@@ -9,6 +9,13 @@
                 <input value="{{date}}" #dateInput type="date" class="form-control-sm form-control" placeholder="2021-05-21" />
             </div>
             <button (click) = "updatePincode(pincodeInput.value, dateInput.value)" type="button" class="btn btn-primary btn-sm ml-2"><i class="bi bi-arrow-repeat"></i></button>
+            <div class="form-check mx-sm-3">
+                <input [(ngModel)]="isChecked18Plus" (change)="fieldsChange18Plus($event)" class="form-check-input" type="checkbox" value="" #18plus>
+                <label class="form-check-label" for="18plus">
+                  Only 18+ <i class="{{apiStatus}}" class="nav-link bi bi-display-fill"></i>
+                </label>
+              </div>
+            
           </form>
 
     </div>
@@ -18,10 +25,9 @@
 <table class="table table-striped table-hover table-bordered">
     <thead class="thead-dark">
       <tr>
-      <th scope="col" style="width: 15%;">Center</th>
-      <th scope="col" style="width: 40%;">Address</th>
+      <th scope="col" style="width: 20%;">Center</th>
+      <th scope="col" style="width: 45%;">Address</th>
       <th scope="col" style="width: 10%;">Vaccine</th>
-      <th scope="col" style="width: 10%;">Pincode</th>
       <th scope="col" style="width: 5%;">Fee</th>
       <th scope="col" style="width: 5%;">Available</th>
       <th scope="col" style="width: 10%;">Date</th>
@@ -35,7 +41,6 @@
               </td>
               <td>{{ session.address}}</td>
               <td>{{ session.vaccine }}</td>
-              <td>{{ session.pincode }}</td>
               <td>{{ session.fee }}</td>
               <td [ngClass]="getCSSClass(session.available_capacity).bg"><strong>{{ session.available_capacity }}</strong></td>
               <td>{{ session.date }}</td>
