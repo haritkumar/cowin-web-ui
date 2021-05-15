@@ -11,6 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CalendarPinComponent } from './components/calendar-pin/calendar-pin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CalendarDistComponent } from './components/calendar-dist/calendar-dist.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     NavComponent,
     FooterComponent,
-    CalendarPinComponent
+    CalendarPinComponent,
+    CalendarDistComponent
   ],
   imports: [
     BrowserModule,
