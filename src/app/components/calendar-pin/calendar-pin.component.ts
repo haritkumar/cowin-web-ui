@@ -11,7 +11,7 @@ export class CalendarPinComponent implements OnInit {
 
   dates: string[] = [];
   dataCalendar: any = {};
-  secondsCounter = interval(10000);
+  secondsCounter = interval(5000);
   tableData: any[] = [];
   pincode: number = 110095;
   date: string = this.dateServiceService.getTodayDate();
