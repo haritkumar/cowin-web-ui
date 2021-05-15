@@ -12,7 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CalendarPinComponent } from './components/calendar-pin/calendar-pin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CalendarDistComponent } from './components/calendar-dist/calendar-dist.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,8 @@ import { CalendarDistComponent } from './components/calendar-dist/calendar-dist.
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
