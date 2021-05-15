@@ -1,4 +1,6 @@
 # CoWin Tracker
+![cowin](src/assets/favicon/apple-touch-icon.png)
+
 CoWin tracker continuously checks for slot availability on CoWin open APIs and presents them in a beautiful table grid.
 
-![cowin](src/assets/favicon/apple-touch-icon.png)
+![cowin](src/assets/img/sample.PNG)
