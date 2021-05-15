@@ -15,7 +15,8 @@ export class CalendarPinComponent implements OnInit {
   tableData: any[] = [];
   pincode: number = 110095;
   date: string = this.dateServiceService.getTodayDate();
-  
+  dateS: string = this.dateServiceService.getTodayDateFormat();
+
   constructor(private cowinService: CowinService, private dateServiceService: DateServiceService) { 
     this.getDates();
     this.secondsCounter.subscribe(n =>{
@@ -28,7 +29,7 @@ export class CalendarPinComponent implements OnInit {
   }
 
   getData(): void{
-    this.cowinService.getCalendarByPin(this.pincode, this.date)
+    this.cowinService.getCalendarByPin(this.pincode, this.dateS)
       .subscribe((data:any) => {
         this.dataCalendar = data;
         this.setData();
@@ -38,6 +39,7 @@ export class CalendarPinComponent implements OnInit {
   setData(): void{
     console.log("Set Data");
     let _this = this;
+    _this.tableData= [];
     this.dataCalendar.centers.forEach(function (center) {
       center.sessions.forEach(function (session) {
         session["fee_type"] = center.fee_type;
@@ -45,7 +47,6 @@ export class CalendarPinComponent implements OnInit {
         session["name"] = center.name;
         session["address"] = center.address;
         session["center_id"] = center.center_id;
-        _this.tableData= [];
         _this.tableData.push(session);
       });
     });
@@ -72,10 +73,12 @@ export class CalendarPinComponent implements OnInit {
     }
   }
 
-  updatePincode(pin): void{
+  updatePincode(pin, date): void{
     console.log("updating pincode to : "+pin);
+    console.log("updating date to : "+date);
+    var parts =date.split('-');
+    this.dateS = parts[2]+"-"+parts[1]+"-"+parts[0];
     this.pincode = pin;
   }
-
 
 }

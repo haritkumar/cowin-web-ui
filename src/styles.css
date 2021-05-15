@@ -31,5 +31,8 @@ body {
     border-radius: 2px;
 }
 .w50{
-    width: 450px !important;
+    max-width: 50% !important;
+}
+.w60{
+    max-width: 60% !important;
 }
