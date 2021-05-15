@@ -25,11 +25,13 @@
 <table class="table table-striped table-hover table-bordered">
     <thead class="thead-dark">
       <tr>
-      <th scope="col" style="width: 20%;">Center</th>
-      <th scope="col" style="width: 45%;">Address</th>
+      <th scope="col" style="width: 15%;">Center</th>
+      <th scope="col" style="width: 40%;">Address</th>
       <th scope="col" style="width: 10%;">Vaccine</th>
       <th scope="col" style="width: 5%;">Fee</th>
       <th scope="col" style="width: 5%;">Available</th>
+      <th scope="col" style="width: 5%;">Dose 1</th>
+      <th scope="col" style="width: 5%;">Dose 2</th>
       <th scope="col" style="width: 10%;">Date</th>
       <th scope="col" style="width: 5%;">Age</th>
       </tr>
@@ -41,8 +43,10 @@
               </td>
               <td>{{ session.address}}</td>
               <td>{{ session.vaccine }}</td>
-              <td>{{ session.fee }}</td>
+              <td>{{ session.fee_type }}</td>
               <td [ngClass]="getCSSClass(session.available_capacity).bg"><strong>{{ session.available_capacity }}</strong></td>
+              <td [ngClass]="getCSSClass(session.available_capacity_dose1).bg"><strong>{{ session.available_capacity_dose1 }}</strong></td>
+              <td [ngClass]="getCSSClass(session.available_capacity_dose2).bg"><strong>{{ session.available_capacity_dose2 }}</strong></td>
               <td>{{ session.date }}</td>
               <td>{{ session.min_age_limit }}</td>
           </tr>
