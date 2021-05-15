@@ -39,6 +39,7 @@ export class CalendarPinComponent implements OnInit {
       },
       error => {
         this.apiStatus = 'cr';
+        this.tableData= [];
       });
   }
 
