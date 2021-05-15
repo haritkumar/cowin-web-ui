@@ -19,4 +19,5 @@ export class CowinService {
   getCalendarByPin(pincode: number, date: string){
     return this.http.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode='+pincode+'&date='+date);
   }
+  
 }

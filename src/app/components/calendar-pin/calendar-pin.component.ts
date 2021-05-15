@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CowinService} from '../../service/cowin.service';
 import { interval } from 'rxjs';
+import {DateServiceService} from '../../service/date-service.service';
 
 @Component({
   selector: 'app-calendar-pin',
@@ -10,13 +11,57 @@ export class CalendarPinComponent implements OnInit {
 
   dates: string[] = [];
   dataCalendar: any = {};
-  secondsCounter = interval(5000);
-  constructor(private cowinService: CowinService) { 
+  secondsCounter = interval(10000);
+  tableData: any[] = [];
+  pincode: number = 110095;
+  date: string = this.dateServiceService.getTodayDate();
+  
+  constructor(private cowinService: CowinService, private dateServiceService: DateServiceService) { 
     this.getDates();
     this.secondsCounter.subscribe(n =>{
       this.getData();
-     });
+    });
   }
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(): void{
+    this.cowinService.getCalendarByPin(this.pincode, this.date)
+      .subscribe((data:any) => {
+        this.dataCalendar = data;
+        this.setData();
+      });
+  }
+
+  setData(): void{
+    console.log("Set Data");
+    let _this = this;
+    this.dataCalendar.centers.forEach(function (center) {
+      center.sessions.forEach(function (session) {
+        session["fee_type"] = center.fee_type;
+        session["pincode"] = center.pincode;
+        session["name"] = center.name;
+        session["address"] = center.address;
+        session["center_id"] = center.center_id;
+        _this.tableData= [];
+        _this.tableData.push(session);
+      });
+    });
+  
+  }
+
+  getCSSClass(capacity) {
+    if(capacity <= 10){
+      return { bg: "bg-r" };
+    }else if(capacity > 10 && capacity <= 50){
+      return { bg: "bg-y" };
+    }else{
+      return  { bg: "bg-g" }
+    }
+  }
+  
 
   getDates(): void{
     let c_date = new Date();
@@ -27,32 +72,10 @@ export class CalendarPinComponent implements OnInit {
     }
   }
 
-  getData(): void{
-    this.cowinService.getCalendarByPin(110095, '14-5-2021')
-      .subscribe((data:any) => {
-        console.log(data);
-        this.dataCalendar = data;
-        this.mapData();
-      });
+  updatePincode(pin): void{
+    console.log("updating pincode to : "+pin);
+    this.pincode = pin;
   }
 
-
-
-  mapData(): void{
-    let _this = this;
-    _this.dates.forEach(function (d1) {
-      _this.dataCalendar.centers.forEach(function (d2) {
-        d2.sessions.forEach(function (d3) {
-          console.log(d3.date+"-"+d1);
-        }); 
-      }); 
-    }); 
-  }
-
-
-
-  ngOnInit(): void {
-    this.getData();
-  }
 
 }

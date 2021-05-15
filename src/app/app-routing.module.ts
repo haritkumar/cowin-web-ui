@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent},
       { path: 'calendarByPincode', component: CalendarPinComponent},
-      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: '', redirectTo: 'calendarByPincode', pathMatch: 'full'},
     ]
   },
 	{ 
