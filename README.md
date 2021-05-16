@@ -1,5 +1,5 @@
 # CoWin Tracker
-[https://haritkumar.github.io/cowin-tracker/](https://haritkumar.github.io/cowin-tracker/)
+[https://cowin-slots-tracker.netlify.app/](https://cowin-slots-tracker.netlify.app/)
 
 CoWin tracker continuously checks for slot availability on CoWin open APIs and presents them in a beautiful table grid.
 
