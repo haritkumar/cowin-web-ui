@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {CowinService} from '../../service/cowin.service';
 import { interval } from 'rxjs';
 import {DateServiceService} from '../../service/date-service.service';
@@ -7,7 +7,7 @@ import {DateServiceService} from '../../service/date-service.service';
   selector: 'app-calendar-pin',
   templateUrl: './calendar-pin.component.html'
 })
-export class CalendarPinComponent implements OnInit {
+export class CalendarPinComponent implements OnInit, OnDestroy {
 
   dates: string[] = [];
   dataCalendar: any = {};
@@ -18,19 +18,24 @@ export class CalendarPinComponent implements OnInit {
   dateS: string = this.dateServiceService.getTodayDateFormat();
   isChecked18Plus: boolean = false;
   apiStatus: string = 'cg';
+  hit: boolean = true;
 
   constructor(private cowinService: CowinService, private dateServiceService: DateServiceService) { 
     this.getDates();
     this.secondsCounter.subscribe(n =>{
-      this.getData();
+      if(this.hit){
+        this.getData();
+      }
     });
   }
-
+ ngOnDestroy(): void {
+    this.hit = false;
+  }
   ngOnInit(): void {
     this.getData();
   }
 
-  getData(): void{
+  getData(): void{//console.log("GET DATA - CalendarPinComponent");
     this.cowinService.getCalendarByPin(this.pincode, this.dateS)
       .subscribe((data:any) => {
         this.apiStatus = 'cg';
@@ -49,6 +54,7 @@ export class CalendarPinComponent implements OnInit {
     _this.tableData= [];
     this.dataCalendar.centers.forEach(function (center) {
       center.sessions.forEach(function (session) {
+        if(parseInt(session.available_capacity) != 0){
         //console.log(_this.isChecked18Plus);
         if(_this.isChecked18Plus){//Only 18+
           if(session.min_age_limit === 18){
@@ -66,7 +72,7 @@ export class CalendarPinComponent implements OnInit {
             session["address"] = center.address;
             session["center_id"] = center.center_id;
             _this.tableData.push(session);
-        }
+        }}
       });
     });
   

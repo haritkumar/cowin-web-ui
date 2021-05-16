@@ -21,6 +21,7 @@ export class CowinService {
   }
   
   getCalendarByDist(dist: number, date: string){
+    //console.log(dist+" - "+date);
     return this.http.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id='+dist+'&date='+date);
 }
 

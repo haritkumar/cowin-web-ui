@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { States } from 'src/app/modal/states';
 import {State} from 'src/app/modal/state';
 import {CowinService} from '../../service/cowin.service';
@@ -11,26 +11,29 @@ import { interval } from 'rxjs';
   selector: 'app-calendar-dist',
   templateUrl: './calendar-dist.component.html'
 })
-export class CalendarDistComponent implements OnInit {
+export class CalendarDistComponent implements OnInit,OnDestroy  {
 
   states: State[] = [];
   districts: District[] = [];
   stateS: number = 9;
-  distS: number;
+  distS: number = 141;
   date: string = this.dateServiceService.getTodayDate();
   dateS: string = this.dateServiceService.getTodayDateFormat();
   apiStatus: string = 'cg';
   isChecked18Plus: boolean = false;
   tableData: any[] = [];
   dataCalendar: any = {};
-  secondsCounter = interval(5000);
-  
+  hit: boolean = true;
+
   constructor(private cowinService: CowinService,
     private dateServiceService: DateServiceService) {
-    this.secondsCounter.subscribe(n =>{
-      this.getData();
-    });
+      
    }
+
+  ngOnDestroy(): void {
+    this.hit = false;
+  }
+
    getCSSClass(capacity) {
     if(capacity === 0){
       return { bg: "bg-r" };
@@ -41,6 +44,12 @@ export class CalendarDistComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    interval(5000).subscribe(n =>{
+      if(this.hit){
+        this.getData();
+      }
+      
+    });
     this.getStates();
     this.getDists();
     this.getData();
@@ -75,7 +84,7 @@ export class CalendarDistComponent implements OnInit {
   }
 
   updateFilter(state, dist, date): void{
-    console.log(state +" - "+dist+" - "+date);
+    //console.log(state +" - "+dist+" - "+date);
     var parts =date.split('-');
     this.dateS = parts[2]+"-"+parts[1]+"-"+parts[0];
     this.stateS = state;
@@ -88,7 +97,7 @@ export class CalendarDistComponent implements OnInit {
     this.getData();
   }
 
-  getData(): void{
+  getData(): void{//console.log("GET DATA - CalendarDistComponent");
     this.cowinService.getCalendarByDist(this.distS, this.dateS)
       .subscribe((data:any) => {
         this.apiStatus = 'cg';
@@ -106,26 +115,32 @@ export class CalendarDistComponent implements OnInit {
     _this.tableData= [];
     this.dataCalendar.centers.forEach(function (center) {
       center.sessions.forEach(function (session) {
-        //console.log(_this.isChecked18Plus);
-        if(_this.isChecked18Plus){//Only 18+
-          if(session.min_age_limit === 18){
-            session["fee_type"] = center.fee_type;
-            session["pincode"] = center.pincode;
-            session["name"] = center.name;
-            session["address"] = center.address;
-            session["center_id"] = center.center_id;
-            _this.tableData.push(session);
+        if(parseInt(session.available_capacity) != 0){
+          //console.log(_this.isChecked18Plus);
+          if(_this.isChecked18Plus){//Only 18+
+            if(session.min_age_limit === 18){
+              session["fee_type"] = center.fee_type;
+              session["pincode"] = center.pincode;
+              session["name"] = center.name;
+              session["address"] = center.address;
+              session["center_id"] = center.center_id;
+              _this.tableData.push(session);
+            }
+          }else{
+              session["fee_type"] = center.fee_type;
+              session["pincode"] = center.pincode;
+              session["name"] = center.name;
+              session["address"] = center.address;
+              session["center_id"] = center.center_id;
+              _this.tableData.push(session);
           }
-        }else{
-            session["fee_type"] = center.fee_type;
-            session["pincode"] = center.pincode;
-            session["name"] = center.name;
-            session["address"] = center.address;
-            session["center_id"] = center.center_id;
-            _this.tableData.push(session);
         }
       });
     });
   
   }
 }
+function takeUntil(onDestroy$: any): import("rxjs").OperatorFunction<number, unknown> {
+  throw new Error('Function not implemented.');
+}
+
