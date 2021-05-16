@@ -20,4 +20,8 @@ export class CowinService {
       return this.http.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin?pincode='+pincode+'&date='+date);
   }
   
+  getCalendarByDist(dist: number, date: string){
+    return this.http.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id='+dist+'&date='+date);
+}
+
 }
