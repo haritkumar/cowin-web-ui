@@ -73,9 +73,9 @@ export class CalendarPinComponent implements OnInit {
   }
 
   getCSSClass(capacity) {
-    if(capacity <= 10){
+    if(capacity === 0){
       return { bg: "bg-r" };
-    }else if(capacity > 10 && capacity <= 50){
+    }else if(capacity > 0 && capacity <= 25){
       return { bg: "bg-y" };
     }else{
       return  { bg: "bg-g" }

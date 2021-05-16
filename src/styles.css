@@ -15,6 +15,12 @@ body {
 .cr{
     color: #ce1f6a !important;
 }
+.cw{
+    color: #fff !important;
+}
+.navbar-dark .navbar-toggler{
+    border-color: #fff !important;
+}
 .apistatus{
     cursor: pointer;
 }
